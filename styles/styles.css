@@ -1,7 +1,10 @@
+/* Nav styles **********************/
 nav {
     margin-bottom: 10px;
 }
 
+
+/* Main Container Styles **********************/
 .container {
     width: 90%;
 }
@@ -10,6 +13,8 @@ nav {
     margin-bottom: 100px;
 }
 
+
+/* Left Container Col Styles **********************/
 .header1 {
     margin-top: 50px;
     margin-bottom: 20px;
@@ -29,6 +34,8 @@ nav {
     background-color: #688BCD;
 }
 
+
+/* Right Container Col Style**********************/
 .img-fluid {
     margin-top: 20px;
     margin-bottom: 20px;
