@@ -1,0 +1,36 @@
+nav {
+    margin-bottom: 10px;
+}
+
+.container {
+    width: 90%;
+}
+
+.border {
+    margin-bottom: 100px;
+}
+
+.header1 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.col-style {
+    width: 95%;
+    padding-left: 30px;
+}
+
+.btn {
+    background-color: #5D7FC6;
+    border-color: #5D7FC6;
+}
+
+.btn-primary:hover {
+    border-color: #688BCD;
+    background-color: #688BCD;
+}
+
+.img-fluid {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 95%;
+}
