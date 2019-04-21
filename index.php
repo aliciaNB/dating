@@ -25,12 +25,6 @@ $f3->route('GET /', function() {
     echo $view-> render('views/home.html');
 });
 
-//Define home route
-$f3->route('GET /homepage', function() {
-    $view = new Template();
-    echo $view-> render('views/home.html');
-});
-
 //Define route to first create profile form - personal information
 $f3->route('POST /personalinformation', function() {
     $view = new Template();
