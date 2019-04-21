@@ -19,6 +19,28 @@
     </nav>
 
 <!-- Main body content -->
+    <div class="container">
+        <div class="row border rounded">
+            <div class="col-12">
+                <h1 class="mt-5 mb-2">Personal Information</h1>
+                <hr>
+            </div>
+            <div class="row form1">
+                <div class="col">
+                    <ul class="list-group">
+                        <li class="list-group-item">Name: {{$_SESSION['first']}} {{$_SESSION['last']}}</li>
+                        <li class="list-group-item">Gender: {{$_SESSION['gender']}}</li>
+                        <li class="list-group-item">Age: {{$_SESSION['age']}}</li>
+                        <li class="list-group-item">Phone: {{$_SESSION['phone']}}</li>
+                        <li class="list-group-item">Email: {{$_SESSION['email']}}</li>
+                        <li class="list-group-item">State: {{$_SESSION['state']}}</li>
+                        <li class="list-group-item">Seeking: {{$_SESSION['seeking']}}</li>
+                        <li class="list-group-item">Interests: {{$_SESSION['interests']}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <!-- Bootstrap scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

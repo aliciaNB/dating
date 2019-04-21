@@ -41,8 +41,6 @@ $f3->route('POST /profile', function() {
     $_SESSION['gender'] = $_POST['gender'];
     $_SESSION['phone'] = $_POST['phone'];
 
-    var_dump($_SESSION);
-
     $view = new Template();
     echo $view->render('views/profile_form.html');
 });
@@ -56,7 +54,6 @@ $f3->route('POST /interest', function() {
     $_SESSION['seeking'] = $_POST['seeking'];
     $_SESSION['bio'] = $_POST['bio'];
 
-
     $view = new Template();
     echo $view->render('views/interest_form.html');
 });
@@ -65,8 +62,9 @@ $f3->route('POST /interest', function() {
 $f3->route('POST /summary', function() {
 
     //gather SESSION info
-    $_SESSION['indoor'] = $_POST['indoor'];
-    $_SESSION['outdoor'] = $_POST['outdoor'];
+    $interest1 = implode(" ", $_POST['indoor']);
+    $interest2 = implode(" ", $_POST['outdoor']);
+    $_SESSION['interests'] = $interest1 . " " . $interest2;
 
     $view = new Template();
     echo $view->render('views/form_summary.html');
