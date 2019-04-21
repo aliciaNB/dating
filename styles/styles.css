@@ -13,8 +13,13 @@ nav {
     margin-bottom: 100px;
 }
 
+.form1 {
+    margin-left: 15px;
+    margin-right: 15px;
+}
 
-/* Left Container Col Styles **********************/
+
+/* Homepage Left Container Col Styles **********************/
 .header1 {
     margin-top: 50px;
     margin-bottom: 20px;
@@ -35,7 +40,7 @@ nav {
 }
 
 
-/* Right Container Col Style**********************/
+/* Homepage Right Container Col Style**********************/
 .img-fluid {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -45,11 +50,6 @@ nav {
 
 
 /* Personal_form styles ***********************/
-.form1 {
-    margin-left: 15px;
-    margin-right: 15px;
-}
-
 .alert {
     background-color: #EAEAEA;
     margin: 30px 5px 250px;
@@ -64,3 +64,8 @@ nav {
     color: #688BCD;
 }
 
+/* Profile_form styles ***********************/
+
+textarea {
+    margin-bottom: 50px;
+}
