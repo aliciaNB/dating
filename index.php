@@ -40,5 +40,11 @@ $f3->route('POST /profile', function() {
     echo $view->render('views/profile_form.html');
 });
 
+//Define route to third create profile form - interest
+$f3->route('POST /interest', function() {
+    $view = new Template();
+    echo $view->render('views/interest_form.html');
+});
+
 //Run Fat-free
 $f3->run();
