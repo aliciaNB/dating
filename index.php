@@ -29,9 +29,15 @@ $f3->route('GET /homepage', function() {
 });
 
 //Define route to first create profile form - personal information
-$f3->route("POST /personalinformation", function() {
+$f3->route('POST /personalinformation', function() {
     $view = new Template();
     echo $view->render('views/personal_form.html');
+});
+
+//Define route to second create profile form - profile
+$f3->route('POST /profile', function() {
+    $view = new Template();
+    echo $view->render('views/profile_form.html');
 });
 
 //Run Fat-free
