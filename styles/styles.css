@@ -49,11 +49,13 @@ nav {
     margin-left: 15px;
     margin-right: 15px;
 }
+
 .alert {
     background-color: #EAEAEA;
     margin: 30px 5px 250px;
     padding: 10px;
 }
+
 .privacylink {
     color: #5D7FC6;
 }
@@ -61,3 +63,4 @@ nav {
 .privacylink:hover {
     color: #688BCD;
 }
+

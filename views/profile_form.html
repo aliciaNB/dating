@@ -18,6 +18,107 @@
         </ul>
     </nav>
 
+<!-- Main body content -->
+    <div class="container">
+        <div class="row border rounded">
+            <div class="col-12">
+                <h1 class="mt-5 mb-2">Profile</h1>
+                <hr>
+            </div>
+
+            <!-- Start of form structure -->
+            <div class="row form1">
+                <form action="interest" method="post">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-label" for="email"><strong>Email</strong></label>
+                                <input class="form-control" type="email" name="email" id="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="state"><strong>State</strong></label>
+                                <select class="form-control" id="state">
+                                    <option value="AL">ALABAMA</option>
+                                    <option value="AK">ALASKA</option>
+                                    <option value="AZ">ARIZONA</option>
+                                    <option value="AR">ARKANSAS</option>
+                                    <option value="CA">CALIFORNIA</option>
+                                    <option value="CO">COLORADO</option>
+                                    <option value="CT">CONNECTICUT</option>
+                                    <option value="DE">DELAWARE</option>
+                                    <option value="DC">DISTRICT OF COLUMBIA</option>
+                                    <option value="FL">FLORIDA</option>
+                                    <option value="GA">GEORGIA</option>
+                                    <option value="HI">HAWAII</option>
+                                    <option value="ID">IDAHO</option>
+                                    <option value="IL">ILLINOIS</option>
+                                    <option value="IN">INDIANA</option>
+                                    <option value="IA">IOWA</option>
+                                    <option value="KS">KANSAS</option>
+                                    <option value="KY">KENTUCKY</option>
+                                    <option value="LA">LOUISIANA</option>
+                                    <option value="ME">MAINE</option>
+                                    <option value="MD">MARYLAND</option>
+                                    <option value="MA">MASSACHUSETTS</option>
+                                    <option value="MI">MICHIGAN</option>
+                                    <option value="MN">MINNESOTA</option>
+                                    <option value="MS">MISSISSIPPI</option>
+                                    <option value="MO">MISSOURI</option>
+                                    <option value="MT">MONTANA</option>
+                                    <option value="NE">NEBRASKA</option>
+                                    <option value="NV">NEVADA</option>
+                                    <option value="NH">NEW HAMPSHIRE</option>
+                                    <option value="NJ">NEW JERSEY</option>
+                                    <option value="NM">NEW MEXICO</option>
+                                    <option value="NY">NEW YORK</option>
+                                    <option value="NC">NORTH CAROLINA</option>
+                                    <option value="ND">NORTH DAKOTA</option>
+                                    <option value="OH">OHIO</option>
+                                    <option value="OK">OKLAHOMA</option>
+                                    <option value="OR">OREGON</option>
+                                    <option value="PA">PENNSYLVANIA</option>
+                                    <option value="RI">RHODE ISLAND</option>
+                                    <option value="SC">SOUTH CAROLINA</option>
+                                    <option value="SD">SOUTH DAKOTA</option>
+                                    <option value="TN">TENNESSEE</option>
+                                    <option value="TX">TEXAS</option>
+                                    <option value="UT">UTAH</option>
+                                    <option value="VT">VERMONT</option>
+                                    <option value="VA">VIRGINIA</option>
+                                    <option value="WA">WASHINGTON</option>
+                                    <option value="wv">WEST VIRGINIA</option>
+                                    <option value="wi">WISCONSIN</option>
+                                    <option value="wy">WYOMING</option>
+                                </select>
+                            </div>
+                            <fieldset class="form-group">
+                                <legend class="col-form-label pt-0"><strong>Seeking</strong></legend>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label">Male
+                                        <input class="form-check-input" type="radio" name="seeking" value="male">
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label">Female
+                                        <input class="form-check-input" type="radio" name="seeking" value="female">
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="bio">Biography</label>
+                                <textarea class="form-control" id="bio" rows="10" cols="5"></textarea>
+                            </div>
+                            <div class="form-group text-right">
+                                <input class="btn btn-primary" type="submit" value="Next >">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 <!-- Bootstrap scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
