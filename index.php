@@ -46,5 +46,13 @@ $f3->route('POST /interest', function() {
     echo $view->render('views/interest_form.html');
 });
 
+//Define route to third create profile form - interest
+$f3->route('POST /summary', function() {
+    //gather SESSION info here
+
+    $view = new Template();
+    echo $view->render('views/form_summary.html');
+});
+
 //Run Fat-free
 $f3->run();

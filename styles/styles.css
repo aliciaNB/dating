@@ -47,8 +47,6 @@ nav {
     width: 95%;
 }
 
-
-
 /* Personal_form styles ***********************/
 .alert {
     background-color: #EAEAEA;
@@ -64,8 +62,10 @@ nav {
     color: #688BCD;
 }
 
-/* Profile_form styles ***********************/
 
+/* Profile_form styles ***********************/
 textarea {
     margin-bottom: 50px;
 }
+
+/* Tnterest_form styles ***********************/
