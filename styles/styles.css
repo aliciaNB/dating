@@ -41,7 +41,7 @@ nav {
 
 
 /* Homepage Right Container Col Style**********************/
-.img-fluid {
+.homeimg {
     margin-top: 20px;
     margin-bottom: 20px;
     width: 95%;
@@ -68,4 +68,16 @@ textarea {
     margin-bottom: 50px;
 }
 
-/* Tnterest_form styles ***********************/
+/* Summary_form styles ***********************/
+.summary {
+    width: 80%;
+}
+
+.list-group-item {
+    padding-right: 10px;
+}
+
+.userimg {
+    margin-top: 0;
+    margin-bottom: 20px;
+}

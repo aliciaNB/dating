@@ -19,14 +19,14 @@
     </nav>
 
 <!-- Main body content -->
-    <div class="container">
+    <div class="container summary">
         <div class="row border rounded">
             <div class="col-12">
                 <h1 class="mt-5 mb-2">Personal Information</h1>
                 <hr>
             </div>
             <div class="row form1">
-                <div class="col">
+                <div class="col-sm-6 mlr-3">
                     <ul class="list-group">
                         <li class="list-group-item">Name: {{$_SESSION['first']}} {{$_SESSION['last']}}</li>
                         <li class="list-group-item">Gender: {{$_SESSION['gender']}}</li>
@@ -37,6 +37,18 @@
                         <li class="list-group-item">Seeking: {{$_SESSION['seeking']}}</li>
                         <li class="list-group-item">Interests: {{$_SESSION['interests']}}</li>
                     </ul>
+                </div>
+                <div class="col mlrb-3">
+                    <div class="mlr-3">
+                        <img src="images/default-profile-img.png" class="rounded img-fluid userimg" alt="default">
+                        <h5 class="text-muted">Biography</h5>
+                        <p class="text-center">{{$_SESSION['bio']}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input class="btn btn-lg btn-primary mb-3" type="submit" value="Contact Me!">
                 </div>
             </div>
         </div>
