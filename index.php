@@ -1,11 +1,9 @@
-<!--
-Name: Alicia Buehner
-Date: 04.21.19
-Description: This file contains the index page for Dating I & II, instantiates the Fat-Free Framework
-            and defines the project routes through the create a profile form.
--->
-
 <?php
+//Name: Alicia Buehner
+//Date: 04.21.19
+//Description: This file contains the index page for Dating I & II, instantiates the Fat-Free Framework
+//and defines the project routes through the create a profile form.
+
 //Start session
 session_start();
 
