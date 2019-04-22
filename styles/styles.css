@@ -1,3 +1,9 @@
+/*
+ * Name: Alicia Buehner
+ * Date: 04.21.19
+ * Description: This file contains the css structures for the My Dating website assignment part I & II.
+ */
+
 /* Nav styles **********************/
 nav {
     margin-bottom: 10px;
@@ -7,6 +13,7 @@ nav {
 /* Main Container Styles **********************/
 .container {
     width: 90%;
+    padding: 20px;
 }
 
 .border {
@@ -47,6 +54,7 @@ nav {
     width: 95%;
 }
 
+
 /* Personal_form styles ***********************/
 .alert {
     background-color: #EAEAEA;
@@ -67,6 +75,7 @@ nav {
 textarea {
     margin-bottom: 50px;
 }
+
 
 /* Summary_form styles ***********************/
 .summary {
