@@ -3,6 +3,37 @@
 //Date: 05.05.19
 //Description: This file contains the validation functions for the dating profile form
 
+/**
+ * Checks to see that personal information form
+ * is valid.
+ *
+ * @return boolean
+ */
+function validForm1() {
+    //temp return value
+    return false;
+}
+
+/**
+ * Checks to see that profile form is valid.
+ *
+ * @return boolean
+ */
+function validForm2() {
+    //temp return value
+    return false;
+}
+
+/**
+ * Checks to see that interest form is valid.
+ *
+ * @return boolean
+ */
+function validForm3() {
+    //temp return value
+    return false;
+}
+
 //TODO: Make name, age, phone, and email required fields.
 // Gender, bio, and interests are optional
 
