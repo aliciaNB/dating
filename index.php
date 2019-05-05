@@ -30,16 +30,43 @@ $f3->route('GET /', function() {
 });
 
 //Define route to first create profile form - personal information
-$f3->route('GET|POST /personalinformation', function() {
+$f3->route('GET|POST /personalinformation', function($f3) {
 
     //if form has been submitted, validate
+    if (!empty($_POST)) {
 
-    //gather SESSION info
-    $_SESSION['first'] = $_POST['first'];
-    $_SESSION['last'] = $_POST['last'];
-    $_SESSION['age'] = $_POST['age'];
-    $_SESSION['gender'] = $_POST['gender'];
-    $_SESSION['phone'] = $_POST['phone'];
+        //get data from form
+        $first = $_POST['first'];
+        $last = $_POST['last'];
+        $age = $_POST['age'];
+        $gender = $_POST['gender'];
+        $phone = $_POST['phone'];
+
+        //add data to the hive
+        $f3->set('first', $first);
+        $f3->set('last', $last);
+        $f3->set('age', $age);
+        $f3->set('gender', $gender);
+        $f3->set('phone', $phone);
+
+
+        //if valid add to session
+        if (validForm1()) {
+            //gather SESSION info
+            $_SESSION['first'] = $first;
+            $_SESSION['last'] = $last;
+            $_SESSION['age'] = $age;
+
+            //gender is optional check if empty store default value
+            if (empty($gender)) {
+                $_SESSION['gender'] = "Gender was not specified";
+            } else {
+                $_SESSION['gender'] = $gender;
+            }
+
+            $_SESSION['phone'] = $phone;
+        }
+    }
 
     $view = new Template();
     echo $view->render('views/personal_form.html');
@@ -48,7 +75,7 @@ $f3->route('GET|POST /personalinformation', function() {
 //Define route to second create profile form - profile
 $f3->route('GET|POST /profile', function() {
 
-    //if form has been submitted, validate
+    //TODO: if form has been submitted, validate
 
     //gather SESSION info
     $_SESSION['email'] = $_POST['email'];
@@ -62,7 +89,8 @@ $f3->route('GET|POST /profile', function() {
 
 //Define route to third create profile form - interest
 $f3->route('GET|POST /interest', function() {
-    //if form has been submitted validate
+
+    //TODO: if form has been submitted validate
 
     //gather SESSION info
     $interest1 = implode(" ", $_POST['indoor']);

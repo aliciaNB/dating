@@ -10,8 +10,30 @@
  * @return boolean
  */
 function validForm1() {
-    //temp return value
-    return false;
+    global $f3;
+    $isValid = true;
+
+    if (!validName($f3->get('first'))) {
+        $isValid = false;
+        $f3->set("errors['first']", 'Please enter your first name');
+    }
+
+    if (!validName($f3->get('last'))) {
+        $isValid = false;
+        $f3->set("errors['last']", 'Please enter your last name');
+    }
+
+    if (!validAge($f3->get('age'))) {
+        $isValid = false;
+        $f3->set("errors['age']", 'Please a age between 18-118');
+    }
+
+    if (!validPhone($f3->get('phone'))) {
+        $isValid = false;
+        $f3->set("errors['phone']", 'Please enter a phone number');
+    }
+
+    return $isValid;
 }
 
 /**
@@ -38,25 +60,27 @@ function validForm3() {
 // Gender, bio, and interests are optional
 
 /**
- * Checks to see that a string is all alphabetic.
+ * Checks to see that a string is all alphabetic
+ * and contains a value.
  *
  *@param String name A string to validate
  * @return boolean
  */
 function validName($name) {
-    //temp return value
-    return false;
+    //return true if not empty and all alphabetic
+    return !empty($name) && ctype_alpha($name);
 }
 
 /**
- * Checks to age is numeric and in range of 18-118.
+ * Checks to age is numeric and in range of 18-118
+ * and contains a value.
  *
  * @param Number age An age to validate
  * @return boolean
  */
 function validAge($age) {
-    //temp return value
-    return false;
+    //return true if age is 18-118, a number, and not empty
+    return $age >= 18 && $age <= 118 && is_numeric($age) && !empty($age);
 }
 
 /**
@@ -66,9 +90,9 @@ function validAge($age) {
  * @return boolean
  */
 function validPhone($phoneNum) {
-    //TODO: You can decide what constitutes a "valid" phone number
-    //temp return value
-    return false;
+    //TODO: You can decide what constitutes a "valid" phone number. What about spaces, -, or ()??
+    //return true if valid number 0-9, first number is not zero, and not empty
+    return preg_match('/^[1-9][0-9]{0,15}$/', $phoneNum);
 }
 
 /**
@@ -78,8 +102,8 @@ function validPhone($phoneNum) {
  * @return boolean
  */
 function validEmail($email) {
-    //temp return value
-    return false;
+    //return true if valid email and not empty
+    return filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($email);
 }
 
 
