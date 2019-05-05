@@ -30,7 +30,7 @@ function validForm1() {
 
     if (!validPhone($f3->get('phone'))) {
         $isValid = false;
-        $f3->set("errors['phone']", 'Please enter a phone number');
+        $f3->set("errors['phone']", 'Please enter a valid phone number');
     }
 
     return $isValid;
@@ -42,8 +42,15 @@ function validForm1() {
  * @return boolean
  */
 function validForm2() {
-    //temp return value
-    return false;
+    global $f3;
+    $isValid = true;
+
+    if (!validEmail($f3->get('email'))) {
+        $isValid = false;
+        $f3->set("errors['email']", 'Please enter a valid email');
+    }
+
+    return $isValid;
 }
 
 /**
@@ -87,7 +94,6 @@ function validAge($age) {
  * @return boolean
  */
 function validPhone($phoneNum) {
-    //TODO: You can decide what constitutes a "valid" phone number. What about spaces, -, or ()??
     $isValid = true;
 
     //remove spaces

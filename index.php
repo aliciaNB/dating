@@ -76,16 +76,34 @@ $f3->route('GET|POST /personalinformation', function($f3) {
 });
 
 //Define route to second create profile form - profile
-$f3->route('GET|POST /profile', function() {
+$f3->route('GET|POST /profile', function($f3) {
 
-    //TODO: if form has been submitted, validate
+    //if form has been submitted, validate
+    if (!empty($_POST)) {
+        //get data from form
+        $email = $_POST['email'];
+        $state = $_POST['state'];
+        $seeking = $_POST['seeking'];
+        $bio = $_POST['bio'];
 
-    //gather SESSION info
-    $_SESSION['email'] = $_POST['email'];
-    $_SESSION['state'] = $_POST['state'];
-    $_SESSION['seeking'] = $_POST['seeking'];
-    $_SESSION['bio'] = $_POST['bio'];
+        //add data to the hive
+        $f3->set('email', $email);
+        $f3->set('state', $state);
+        $f3->set('seeking', $seeking);
+        $f3->set('bio', $bio);
 
+        //if valid add to session
+        if (validForm2()) {
+            //gather SESSION info
+            $_SESSION['email'] = $email;
+            $_SESSION['state'] = $state;
+            $_SESSION['seeking'] = $seeking;
+            $_SESSION['bio'] = $bio;
+
+            //Redirect to profile form
+            $f3->reroute('/interest');
+        }
+    }
     $view = new Template();
     echo $view->render('views/profile_form.html');
 });
@@ -95,10 +113,11 @@ $f3->route('GET|POST /interest', function() {
 
     //TODO: if form has been submitted validate
 
+    //TODO: fix bug with implode
     //gather SESSION info
-    $interest1 = implode(" ", $_POST['indoor']);
-    $interest2 = implode(" ", $_POST['outdoor']);
-    $_SESSION['interests'] = $interest1 . " " . $interest2;
+    //$interest1 = implode(" ", $_POST['indoor']);
+    //$interest2 = implode(" ", $_POST['outdoor']);
+    //$_SESSION['interests'] = $interest1 . " " . $interest2;
 
     $view = new Template();
     echo $view->render('views/interest_form.html');
