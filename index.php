@@ -65,6 +65,9 @@ $f3->route('GET|POST /personalinformation', function($f3) {
             }
 
             $_SESSION['phone'] = $phone;
+
+            //Redirect to profile form
+            $f3->reroute('/profile');
         }
     }
 

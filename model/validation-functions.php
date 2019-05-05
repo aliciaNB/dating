@@ -56,9 +56,6 @@ function validForm3() {
     return false;
 }
 
-//TODO: Make name, age, phone, and email required fields.
-// Gender, bio, and interests are optional
-
 /**
  * Checks to see that a string is all alphabetic
  * and contains a value.
@@ -91,8 +88,17 @@ function validAge($age) {
  */
 function validPhone($phoneNum) {
     //TODO: You can decide what constitutes a "valid" phone number. What about spaces, -, or ()??
-    //return true if valid number 0-9, first number is not zero, and not empty
-    return preg_match('/^[1-9][0-9]{0,15}$/', $phoneNum);
+    $isValid = true;
+
+    //remove spaces
+    $numbers = preg_replace("/[^0-9]/", '', $phoneNum);
+    $values = strlen($numbers);
+
+    if($values != 10) {
+        $isValid = false;
+    }
+    //return true if valid number 0-9, not empty, is at least 10 digits
+    return $isValid;
 }
 
 /**
