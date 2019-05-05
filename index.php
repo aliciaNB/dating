@@ -1,7 +1,7 @@
 <?php
 //Name: Alicia Buehner
-//Date: 04.21.19
-//Description: This file contains the index page for Dating I & II, instantiates the Fat-Free Framework
+//Date: 05.05.19
+//Description: This file contains the index page for Dating I, II & III, instantiates the Fat-Free Framework
 //and defines the project routes through the create a profile form.
 
 //Start session
@@ -13,9 +13,13 @@ error_reporting(E_ALL);
 
 //Require vendor/autoload file
 require_once('vendor/autoload.php');
+require_once('model/validation-functions.php');
 
 //Create an instance of the Base class (instantiate Fat-Free)
 $f3 = Base::instance();
+
+//Turn on Fat-Free error reporting
+$f3->set('DEBUG', 3);
 
 //Define a default route
 $f3->route('GET /', function() {
