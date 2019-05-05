@@ -65,16 +65,16 @@ Description: This file contains the html structures for the create profile form 
                         </div>
                         <fieldset class="form-group">
                             <legend class="col-form-label pt-0"><strong>Gender</strong></legend>
-                            <div class="form-check form-check-inline">
-                                <label class="form-check-label">Male
-                                    <input class="form-check-input" type="radio" name="gender" value="Male">
-                                </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <label class="form-check-label">Female
-                                    <input class="form-check-input" type="radio" name="gender" value="Female">
-                                </label>
-                            </div>
+                            <repeat group="{{ @genders }}" value="{{ @genderOption }}">
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label">{{ @genderOption }}
+                                        <input class="form-check-input" type="radio" name="gender" value="{{ @genderOption }}"
+                                        <check if="{{ @genderOption == @gender }}">
+                                            {{ checked }}
+                                        </check>>
+                                    </label>
+                                </div>
+                            </repeat>
                         </fieldset>
                         <div class="form-group">
                             <label class="form-label" for="phone"><strong>Phone Number</strong></label>

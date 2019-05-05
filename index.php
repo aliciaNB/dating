@@ -22,6 +22,7 @@ $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 
 //TODO: define arrays for the check boxes here.
+$f3->set('genders', array('Male', 'Female'));
 
 //Define a default route
 $f3->route('GET /', function() {
