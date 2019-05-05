@@ -75,6 +75,9 @@ Description: This file contains the html structures for the create profile form 
                                     </label>
                                 </div>
                             </repeat>
+                            <check if="{{ @errors['gender'] }}">
+                                <small id="genderHelp" class="text-danger">{{ @errors['gender'] }}</small>
+                            </check>
                         </fieldset>
                         <div class="form-group">
                             <label class="form-label" for="phone"><strong>Phone Number</strong></label>

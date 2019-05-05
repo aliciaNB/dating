@@ -65,6 +65,9 @@ Description: This file contains the html structures for the create profile form 
                                         </label>
                                     </div>
                                 </repeat>
+                                <check if="{{ @errors['seeking'] }}">
+                                    <small id="seekingHelp" class="text-danger">{{ @errors['seeking'] }}</small>
+                                </check>
                             </fieldset>
                         </div>
                         <div class="col">

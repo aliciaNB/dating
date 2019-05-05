@@ -28,6 +28,11 @@ function validForm1() {
         $f3->set("errors['age']", 'Please a age between 18-118');
     }
 
+    if (!validGender($f3->get('gender'))) {
+        $isValid = false;
+        $f3->set("errors['gender']", "Invalid selection");
+    }
+
     if (!validPhone($f3->get('phone'))) {
         $isValid = false;
         $f3->set("errors['phone']", 'Please enter a valid phone number');
@@ -48,6 +53,11 @@ function validForm2() {
     if (!validEmail($f3->get('email'))) {
         $isValid = false;
         $f3->set("errors['email']", 'Please enter a valid email');
+    }
+
+    if (!validGender($f3->get('seeking'))) {
+        $isValid = false;
+        $f3->set("errors['seeking']", "Invalid selection");
     }
 
     return $isValid;
@@ -73,6 +83,23 @@ function validForm3() {
 function validName($name) {
     //return true if not empty and all alphabetic
     return !empty($name) && ctype_alpha($name);
+}
+
+/* Validate gender
+ *
+ * @param String gender
+ * @return boolean
+ */
+function validGender($gender)
+{
+    global $f3;
+
+    //gender is optional
+    if (empty($gender)) {
+        return true;
+    }
+
+    return in_array($gender, $f3->get('genders'));
 }
 
 /**
@@ -117,7 +144,6 @@ function validEmail($email) {
     //return true if valid email and not empty
     return filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($email);
 }
-
 
 /**
  * Checks each selected outdoor interest against a list
