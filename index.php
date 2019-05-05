@@ -66,7 +66,7 @@ $f3->route('GET|POST /personalinformation', function($f3) {
 
             //gender is optional check if empty store default value
             if (empty($gender)) {
-                $_SESSION['gender'] = "Gender was not specified";
+                $_SESSION['gender'] = "Gender was not specified yet";
             } else {
                 $_SESSION['gender'] = $gender;
             }
@@ -105,15 +105,20 @@ $f3->route('GET|POST /profile', function($f3) {
             //gather SESSION info
             $_SESSION['email'] = $email;
             $_SESSION['state'] = $state;
-            $_SESSION['seeking'] = $seeking;
 
             //gender is optional check if empty store default value
             if (empty($seeking)) {
-                $_SESSION['seeking'] = "Gender was not specified";
+                $_SESSION['seeking'] = "Gender was not specified yet";
             } else {
                 $_SESSION['seeking'] = $seeking;
             }
-            $_SESSION['bio'] = $bio;
+
+            //bio is option check if empty store default value
+            if (empty($bio)) {
+                $_SESSION['bio'] = "Biography was not specified yet";
+            } else {
+                $_SESSION['bio'] = $seeking;
+            }
 
             //Redirect to profile form
             $f3->reroute('/interest');
