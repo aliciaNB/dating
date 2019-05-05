@@ -123,7 +123,7 @@ $f3->route('GET|POST /profile', function($f3) {
             if (empty($bio)) {
                 $_SESSION['bio'] = "Biography was not specified yet";
             } else {
-                $_SESSION['bio'] = $seeking;
+                $_SESSION['bio'] = $bio;
             }
 
             //Redirect to profile form
