@@ -21,7 +21,7 @@ $f3 = Base::instance();
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
-//TODO: define arrays for the check boxes here.
+//TODO: define arrays for the check boxes and radio here.
 $f3->set('genders', array('Male', 'Female'));
 $f3->set('states', array('ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA', 'COLORADO', 'CONNECTICUT', 'DELAWARE',
     'DISTRICT OF COLUMBIA', 'FLORIDA','GEORGIA', 'HAWAII', 'IDAHO', 'ILLINOIS', 'INDIANA', 'IOWA', 'KANSAS', 'KENTUCKY',
@@ -101,10 +101,18 @@ $f3->route('GET|POST /profile', function($f3) {
 
         //if valid add to session
         if (validForm2()) {
+
             //gather SESSION info
             $_SESSION['email'] = $email;
             $_SESSION['state'] = $state;
             $_SESSION['seeking'] = $seeking;
+
+            //gender is optional check if empty store default value
+            if (empty($seeking)) {
+                $_SESSION['seeking'] = "Gender was not specified";
+            } else {
+                $_SESSION['seeking'] = $seeking;
+            }
             $_SESSION['bio'] = $bio;
 
             //Redirect to profile form
