@@ -52,6 +52,9 @@ Description: This file contains the html structures for the create profile form 
                                         >{{ @stateOption }}</option>
                                     </repeat>
                                 </select>
+                                <check if="{{ @errors['state'] }}">
+                                    <small id="stateHelp" class="text-danger">{{ @errors['state'] }}</small>
+                                </check>
                             </div>
                             <fieldset class="form-group">
                                 <legend class="col-form-label pt-0"><strong>Gender</strong></legend>

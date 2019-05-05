@@ -55,6 +55,11 @@ function validForm2() {
         $f3->set("errors['email']", 'Please enter a valid email');
     }
 
+    if (!validState($f3->get('state'))) {
+        $isValid = false;
+        $f3->set("errors['state']", "Invalid selection");
+    }
+
     if (!validGender($f3->get('seeking'))) {
         $isValid = false;
         $f3->set("errors['seeking']", "Invalid selection");
@@ -144,6 +149,25 @@ function validEmail($email) {
     //return true if valid email and not empty
     return filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($email);
 }
+
+
+/* Validate state
+ *
+ * @param String state selected
+ * @return boolean
+ */
+function validState($state)
+{
+    global $f3;
+
+    //gender is optional
+    if (empty($state)) {
+        return true;
+    }
+
+    return in_array($state, $f3->get('states'));
+}
+
 
 /**
  * Checks each selected outdoor interest against a list
