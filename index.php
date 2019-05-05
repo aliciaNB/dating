@@ -21,6 +21,8 @@ $f3 = Base::instance();
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
+//TODO: define arrays for the check boxes here.
+
 //Define a default route
 $f3->route('GET /', function() {
     $view = new Template();
@@ -28,13 +30,9 @@ $f3->route('GET /', function() {
 });
 
 //Define route to first create profile form - personal information
-$f3->route('POST /personalinformation', function() {
-    $view = new Template();
-    echo $view->render('views/personal_form.html');
-});
+$f3->route('GET|POST /personalinformation', function() {
 
-//Define route to second create profile form - profile
-$f3->route('POST /profile', function() {
+    //if form has been submitted, validate
 
     //gather SESSION info
     $_SESSION['first'] = $_POST['first'];
@@ -44,11 +42,13 @@ $f3->route('POST /profile', function() {
     $_SESSION['phone'] = $_POST['phone'];
 
     $view = new Template();
-    echo $view->render('views/profile_form.html');
+    echo $view->render('views/personal_form.html');
 });
 
-//Define route to third create profile form - interest
-$f3->route('POST /interest', function() {
+//Define route to second create profile form - profile
+$f3->route('GET|POST /profile', function() {
+
+    //if form has been submitted, validate
 
     //gather SESSION info
     $_SESSION['email'] = $_POST['email'];
@@ -57,17 +57,24 @@ $f3->route('POST /interest', function() {
     $_SESSION['bio'] = $_POST['bio'];
 
     $view = new Template();
-    echo $view->render('views/interest_form.html');
+    echo $view->render('views/profile_form.html');
 });
 
 //Define route to third create profile form - interest
-$f3->route('POST /summary', function() {
+$f3->route('GET|POST /interest', function() {
+    //if form has been submitted validate
 
     //gather SESSION info
     $interest1 = implode(" ", $_POST['indoor']);
     $interest2 = implode(" ", $_POST['outdoor']);
     $_SESSION['interests'] = $interest1 . " " . $interest2;
 
+    $view = new Template();
+    echo $view->render('views/interest_form.html');
+});
+
+//Define route to third create profile form - interest
+$f3->route('POST /summary', function() {
     $view = new Template();
     echo $view->render('views/form_summary.html');
 });
