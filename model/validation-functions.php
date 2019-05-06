@@ -74,8 +74,21 @@ function validForm2() {
  * @return boolean
  */
 function validForm3() {
+    global $f3;
+    $isValid = true;
+
+    if (!validIndoor($f3->get('indoor'))) {
+        $isValid = false;
+        $f3->set("errors['indoor']", "Invalid selection");
+    }
+
+    if (!validOutdoor($f3->get('outdoor'))) {
+        $isValid = false;
+        $f3->set("errors['outdoor']", "Invalid selection");
+    }
+
     //temp return value
-    return false;
+    return $isValid;
 }
 
 /**
@@ -95,8 +108,7 @@ function validName($name) {
  * @param String gender
  * @return boolean
  */
-function validGender($gender)
-{
+function validGender($gender){
     global $f3;
 
     //gender is optional
@@ -156,11 +168,10 @@ function validEmail($email) {
  * @param String state selected
  * @return boolean
  */
-function validState($state)
-{
+function validState($state) {
     global $f3;
 
-    //gender is optional
+    //state is optional
     if (empty($state)) {
         return true;
     }
@@ -177,8 +188,17 @@ function validState($state)
  * @return boolean
  */
 function validOutdoor($outdoor) {
-    //temp return value
-    return false;
+    global $f3;
+    $isValid = true;
+    // if it's empty, don't check for in array
+    if(!empty($outdoor)) {
+        foreach($outdoor as $item) {
+            if(!in_array($item, $f3->get('outdoors'))) {
+                $isValid = false;
+            }
+        }
+    }
+    return $isValid;
 }
 
 /**
@@ -189,6 +209,15 @@ function validOutdoor($outdoor) {
  * @return boolean
  */
 function validIndoor($indoor) {
-    //temp return value
-    return false;
+    global $f3;
+    $isValid = true;
+    // if it's empty, don't check for in array
+    if(!empty($indoor)) {
+        foreach($indoor as $item) {
+            if(!in_array($item, $f3->get('indoors'))) {
+                $isValid = false;
+            }
+        }
+    }
+    return $isValid;
 }

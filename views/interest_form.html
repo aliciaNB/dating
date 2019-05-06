@@ -1,6 +1,6 @@
 <!--
 Name: Alicia Buehner
-Date: 04.21.19
+Date: 05.05.19
 Description: This file contains the html structures for the create profile form part 3 interests for the My Dating website assignment part I & II.
 -->
 <!DOCTYPE html>
@@ -30,91 +30,44 @@ Description: This file contains the html structures for the create profile form 
                 <h1 class="mt-5 mb-2">Interests</h1>
                 <hr>
             </div>
-
             <div class="col form1">
-                <form action="summary" method="post">
+                <form action="#" method="post">
                     <div class="row">
                         <div class="col">
                             <fieldset class="form-group">
                                 <legend class="col-form-label pt-0"><strong>In-door Interests</strong></legend>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="indoor[]" type="checkbox" id="tv" value="tv">
-                                            <label class="form-check-label" for="tv">tv</label>
+                                <check if="{{ @errors['indoor'] }}">
+                                    <small id="indoorHelp" class="text-danger">{{ @errors['indoor'] }}</small>
+                                </check>
+                                <div class="row ml-1">
+                                    <repeat group="{{ @indoors }}" value="{{ @indoorOption }}">
+                                        <div class="form-check col-3">
+                                            <input class="form-check-input" name="indoor[]" type="checkbox" id="{{ @indoorOption }}"
+                                                   value="{{ @indoorOption }}"
+                                            <check if="{{ !(empty(@indoor)) && in_array(@indoorOption, @indoor) }}">
+                                                checked
+                                            </check>>
+                                            <label class="form-check-label" for="{{ @indoorOption }}">{{ @indoorOption }}</label>
                                         </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="indoor[]" type="checkbox" id="puzzles" value="puzzles">
-                                            <label class="form-check-label" for="puzzles">puzzles</label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="indoor[]" type="checkbox" id="movies" value="movies">
-                                            <label class="form-check-label" for="movies">movies</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="indoor[]" type="checkbox" id="reading" value="reading">
-                                            <label class="form-check-label" for="reading">reading</label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="indoor[]" type="checkbox" id="cooking" value="cooking">
-                                            <label class="form-check-label" for="cooking">cooking</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="indoor[]" type="checkbox" id="playingcards" value="playing cards">
-                                            <label class="form-check-label" for="playingcards">playing cards</label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="indoor[]" type="checkbox" id="boardgames" value="board games">
-                                            <label class="form-check-label" for="boardgames">board games</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="indoor[]" type="checkbox" id="videogames" value="video games">
-                                            <label class="form-check-label" for="videogames">video games</label>
-                                        </div>
-                                    </div>
+                                    </repeat>
                                 </div>
                             </fieldset>
                             <fieldset class="form-group">
                                 <legend class="col-form-label pt-0"><strong>Out-door Interests</strong></legend>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="outdoor[]" type="checkbox" id="hiking" value="hiking">
-                                            <label class="form-check-label" for="hiking">hiking</label>
+                                <check if="{{ @errors['outdoor'] }}">
+                                    <small id="outdoorHelp" class="text-danger">{{ @errors['outdoor'] }}</small>
+                                </check>
+                                <div class="row ml-1">
+                                    <repeat group="{{ @outdoors }}" value="{{ @outdoorOption }}">
+                                        <div class="form-check col-3">
+                                            <input class="form-check-input" name="outdoor[]" type="checkbox" id="{{ @outdoorOption }}"
+                                                   value="{{ @outdoorOption }}"
+                                            <check if="{{ !(empty(@outdoor)) && in_array(@outdoorOption, @outdoor) }}">
+                                                checked
+                                            </check>>
+                                            <label class="form-check-label" for="{{ @outdoorOption }}">{{ @outdoorOption }}</label>
                                         </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="outdoor[]" type="checkbox" id="walking" value="walking">
-                                            <label class="form-check-label" for="walking">walking</label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="outdoor[]" type="checkbox" id="biking" value="biking">
-                                            <label class="form-check-label" for="biking">biking</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="outdoor[]" type="checkbox" id="climbing" value="climbing">
-                                            <label class="form-check-label" for="climbing">climbing</label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="outdoor[]" type="checkbox" id="swimming" value="swimming">
-                                            <label class="form-check-label" for="swimming">swimming</label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="outdoor[]" type="checkbox" id="collecting" value="collecting">
-                                            <label class="form-check-label" for="collecting">collecting</label>
-                                        </div>
-                                    </div>
+                                    </repeat>
                                 </div>
                             </fieldset>
                             <div class="form-group text-right">

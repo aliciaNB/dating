@@ -21,14 +21,17 @@ $f3 = Base::instance();
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
-//TODO: define arrays for the check boxes and radio here.
 $f3->set('genders', array('Male', 'Female'));
+
 $f3->set('states', array('ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA', 'COLORADO', 'CONNECTICUT', 'DELAWARE',
     'DISTRICT OF COLUMBIA', 'FLORIDA','GEORGIA', 'HAWAII', 'IDAHO', 'ILLINOIS', 'INDIANA', 'IOWA', 'KANSAS', 'KENTUCKY',
     'LOUISIANA', 'MAINE', 'MARYLAND', 'MASSACHUSETTS','MICHIGAN', 'MINNESOTA', 'MISSISSIPPI', 'MISSOURI', 'MONTANA',
     'NEBRASKA', 'NEVADA', 'NEW HAMPSHIRE', 'NEW JERSEY', 'NEW MEXICO', 'NEW YORK', 'NORTH CAROLINA', 'NORTH DAKOTA',
     'OHIO', 'OKLAHOMA','OREGON', 'PENNSYLVANIA', 'RHODE ISLAND', 'SOUTH CAROLINA', 'SOUTH DAKOTA', 'TENNESSEE',
     'TEXAS', 'UTAH', 'VERMONT', 'VIRGINIA', 'WASHINGTON', 'WEST VIRGINIA', 'WISCONSIN', 'WYOMING'));
+
+$f3->set('indoors', array('tv', 'puzzles', 'movies', 'reading', 'cooking', 'playing cards', 'board games', 'video games'));
+$f3->set('outdoors', array('hiking', 'walking', 'biking', 'climbing', 'swimming', 'collecting'));
 
 //Define a default route
 $f3->route('GET /', function() {
@@ -106,7 +109,7 @@ $f3->route('GET|POST /profile', function($f3) {
             $_SESSION['email'] = $email;
 
             //state is optional check if empty store default value
-            if (empty($statg)) {
+            if (empty($state)) {
                 $_SESSION['state'] = "State was not specified yet";
             } else {
                 $_SESSION['state'] = $state;
@@ -134,23 +137,36 @@ $f3->route('GET|POST /profile', function($f3) {
     echo $view->render('views/profile_form.html');
 });
 
+//Define route to third create profile form - interest if empty
+$f3->route('GET /interest', function($f3) {
+    $view = new Template();
+    echo $view->render('views/interest_form.html');
+});
+
 //Define route to third create profile form - interest
-$f3->route('GET|POST /interest', function() {
+$f3->route('POST /interest', function($f3) {
 
-    //TODO: if form has been submitted validate
+        $indoor = $_POST['indoor'];
+        $outdoor = $_POST['outdoor'];
 
-    //TODO: fix bug with implode
-    //gather SESSION info
-    //$interest1 = implode(" ", $_POST['indoor']);
-    //$interest2 = implode(" ", $_POST['outdoor']);
-    //$_SESSION['interests'] = $interest1 . " " . $interest2;
+        //add data to hive
+        $f3->set('indoor', $indoor);
+        $f3->set('outdoor', $outdoor);
+
+        if (validForm3()) {
+            //gather SESSION info
+            $_SESSION['interests'] = implode(' ', $indoor) . ' ' . implode(' ', $outdoor);
+
+            //Redirect to summary
+            $f3->reroute('/summary');
+        }
 
     $view = new Template();
     echo $view->render('views/interest_form.html');
 });
 
 //Define route to third create profile form - interest
-$f3->route('POST /summary', function() {
+$f3->route('GET|POST /summary', function() {
     $view = new Template();
     echo $view->render('views/form_summary.html');
 });
