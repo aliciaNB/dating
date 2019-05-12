@@ -35,7 +35,7 @@ Description: This file contains the html structures for the create profile form 
         <div class="row form1">
             <form action="#" method="post">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-sm-8">
                         <div class="form-group">
                             <label class="form-label" for="first"><strong>First Name</strong></label>
                             <input class="form-control" type="text" name="first" id="first" value="{{ @first }}">
@@ -103,12 +103,14 @@ Description: This file contains the html structures for the create profile form 
                             </repeat>
                         </fieldset>
                     </div>
-                    <div class="col pr-4">
+                    <div class="col-sm-4 pr-4">
                         <div class="alert alert-secondary text-center" role="alert">
                             <strong>Note:</strong> All information entered is protected by our
-                            <a href="#" class="privacylink">privacy policy</a>. Profile information can only be viewed by others
-                            with your permission.
+                            <a href="#" class="privacylink">privacy policy</a>. Profile information can only be viewed
+                            by others with your permission.
                         </div>
+                    </div>
+                    <div class="col">
                         <div class="form-group text-right">
                             <input class="btn btn-primary" type="submit" value="Next >">
                         </div>

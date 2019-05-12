@@ -58,7 +58,9 @@ nav {
 /* Personal_form styles ***********************/
 .alert {
     background-color: #EAEAEA;
-    margin: 30px 5px 250px;
+    margin-top: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
     padding: 10px;
 }
 
