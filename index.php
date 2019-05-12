@@ -130,7 +130,7 @@ $f3->route('GET|POST /profile', function($f3) {
             }
 
             //Redirect to profile form
-            $f3->reroute('/interest');
+            $f3->reroute('/interests');
         }
     }
     $view = new Template();
