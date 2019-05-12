@@ -25,7 +25,7 @@ function validForm1() {
 
     if (!validAge($f3->get('age'))) {
         $isValid = false;
-        $f3->set("errors['age']", 'Please a age between 18-118');
+        $f3->set("errors['age']", 'Please choose a valid age between 18-118');
     }
 
     if (!validGender($f3->get('gender'))) {

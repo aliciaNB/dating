@@ -138,13 +138,13 @@ $f3->route('GET|POST /profile', function($f3) {
 });
 
 //Define route to third create profile form - interest if empty
-$f3->route('GET /interest', function($f3) {
+$f3->route('GET /interests', function($f3) {
     $view = new Template();
     echo $view->render('views/interest_form.html');
 });
 
 //Define route to third create profile form - interest
-$f3->route('POST /interest', function($f3) {
+$f3->route('POST /interests', function($f3) {
 
         $indoor = $_POST['indoor'];
         $outdoor = $_POST['outdoor'];

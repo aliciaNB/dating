@@ -39,6 +39,9 @@ Description: This file contains the html structures for the create profile form 
                             <div class="form-group">
                                 <label class="form-label" for="email"><strong>Email</strong></label>
                                 <input class="form-control" type="email" name="email" id="email" value="{{ @email }}">
+                                <check if="{{ @errors['email'] }}">
+                                    <small id="emailHelp" class="text-danger">{{ @errors['email'] }}</small>
+                                </check>
                             </div>
                             <div class="form-group">
                                 <label for="state"><strong>State</strong></label>
