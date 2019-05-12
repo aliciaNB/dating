@@ -43,7 +43,7 @@ $f3->route('GET /', function() {
 
 //Define route to first create profile form - personal information
 $f3->route('GET|POST /personalinformation', function($f3) {
-//TODO: validate, add to hive, and set session for premium checkbox
+
     //if form has been submitted, validate
     if (!empty($_POST)) {
         //get data from form
