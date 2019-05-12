@@ -21,6 +21,7 @@ $f3 = Base::instance();
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
+//define expected values for form arrays with multiple values
 $f3->set('genders', array('Male', 'Female'));
 
 $f3->set('states', array('ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA', 'COLORADO', 'CONNECTICUT', 'DELAWARE',
@@ -44,7 +45,6 @@ $f3->route('GET|POST /personalinformation', function($f3) {
 
     //if form has been submitted, validate
     if (!empty($_POST)) {
-
         //get data from form
         $first = $_POST['first'];
         $last = $_POST['last'];
@@ -59,7 +59,6 @@ $f3->route('GET|POST /personalinformation', function($f3) {
         $f3->set('gender', $gender);
         $f3->set('phone', $phone);
 
-
         //if valid add to session
         if (validForm1()) {
             //gather SESSION info
@@ -73,7 +72,6 @@ $f3->route('GET|POST /personalinformation', function($f3) {
             } else {
                 $_SESSION['gender'] = $gender;
             }
-
             $_SESSION['phone'] = $phone;
 
             //Redirect to profile form
@@ -104,7 +102,6 @@ $f3->route('GET|POST /profile', function($f3) {
 
         //if valid add to session
         if (validForm2()) {
-
             //gather SESSION info
             $_SESSION['email'] = $email;
 
@@ -133,6 +130,7 @@ $f3->route('GET|POST /profile', function($f3) {
             $f3->reroute('/interests');
         }
     }
+
     $view = new Template();
     echo $view->render('views/profile_form.html');
 });
@@ -146,31 +144,32 @@ $f3->route('GET /interests', function($f3) {
 //Define route to third create profile form - interest
 $f3->route('POST /interests', function($f3) {
 
-        $indoor = $_POST['indoor'];
-        $outdoor = $_POST['outdoor'];
+    $indoor = $_POST['indoor'];
+    $outdoor = $_POST['outdoor'];
 
-        //add data to hive
-        $f3->set('indoor', $indoor);
-        $f3->set('outdoor', $outdoor);
+    //add data to hive
+    $f3->set('indoor', $indoor);
+    $f3->set('outdoor', $outdoor);
 
-        if (validForm3()) {
-            //gather SESSION info && check for empty values
-            if (!empty($indoor) && !empty($outdoor)) {
-                //if selected in both display both
-                $_SESSION['interests'] = implode(' ', $indoor) . ' ' . implode(' ', $outdoor);
-            } else if (empty($outdoor) && !empty($indoor)) {
-                //if outdoor is empty display just indoor
-                $_SESSION['interests'] = implode(' ', $indoor);
-            } else if (empty($indoor) && !empty($outdoor)) {
-                //if indoor is empty display just outdoor
-                $_SESSION['interests'] = implode(' ', $outdoor);
-            } else {
-                //if both are empty display default
-                $_SESSION['interests'] = "Interests was not specified yet";
-            }
-            //Redirect to summary
-            $f3->reroute('/summary');
+    //if valid add to session
+    if (validForm3()) {
+        //gather SESSION info && check for empty values
+        if (!empty($indoor) && !empty($outdoor)) {
+            //if selected in both display both
+            $_SESSION['interests'] = implode(' ', $indoor) . ' ' . implode(' ', $outdoor);
+        } else if (empty($outdoor) && !empty($indoor)) {
+            //if outdoor is empty display just indoor
+            $_SESSION['interests'] = implode(' ', $indoor);
+        } else if (empty($indoor) && !empty($outdoor)) {
+            //if indoor is empty display just outdoor
+            $_SESSION['interests'] = implode(' ', $outdoor);
+        } else {
+            //if both are empty display default
+            $_SESSION['interests'] = "Interests was not specified yet";
         }
+        //Redirect to summary
+        $f3->reroute('/summary');
+    }
 
     $view = new Template();
     echo $view->render('views/interest_form.html');
