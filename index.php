@@ -22,7 +22,7 @@ $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 
 //define expected values for form checks, radios, and drop downs
-$f3->set('memberships', array('Sign me up for a Premium Account!'));
+$f3->set('memberships', 'Sign me up for a Premium Account!');
 $f3->set('genders', array('Male', 'Female'));
 
 $f3->set('states', array('ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA', 'COLORADO', 'CONNECTICUT', 'DELAWARE',
@@ -52,6 +52,7 @@ $f3->route('GET|POST /personalinformation', function($f3) {
         $age = $_POST['age'];
         $gender = $_POST['gender'];
         $phone = $_POST['phone'];
+        $membership = $_POST['membership'];
 
         //add data to the hive
         $f3->set('first', $first);
@@ -59,6 +60,7 @@ $f3->route('GET|POST /personalinformation', function($f3) {
         $f3->set('age', $age);
         $f3->set('gender', $gender);
         $f3->set('phone', $phone);
+        $f3->set('membership', $membership);
 
         //if valid add to session
         if (validForm1()) {

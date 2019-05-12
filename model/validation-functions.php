@@ -38,6 +38,11 @@ function validForm1() {
         $f3->set("errors['phone']", 'Please enter a valid phone number');
     }
 
+    if (!validMembership($f3->get('membership'))) {
+        $isValid = false;
+        $f3->set("errors['membership']", 'Invalid selection');
+    }
+
     return $isValid;
 }
 
@@ -218,6 +223,18 @@ function validIndoor($indoor) {
                 $isValid = false;
             }
         }
+    }
+    return $isValid;
+}
+
+function validMembership($membership) {
+    global $f3;
+    $isValid = true;
+    // if it's empty, don't check for in array
+    if(!empty($membership)){
+       if(!($membership == $f3->get('memberships'))) {
+           $isValid = false;
+       }
     }
     return $isValid;
 }
