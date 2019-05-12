@@ -154,9 +154,20 @@ $f3->route('POST /interests', function($f3) {
         $f3->set('outdoor', $outdoor);
 
         if (validForm3()) {
-            //gather SESSION info
-            $_SESSION['interests'] = implode(' ', $indoor) . ' ' . implode(' ', $outdoor);
-
+            //gather SESSION info && check for empty values
+            if (!empty($indoor) && !empty($outdoor)) {
+                //if selected in both display both
+                $_SESSION['interests'] = implode(' ', $indoor) . ' ' . implode(' ', $outdoor);
+            } else if (empty($outdoor) && !empty($indoor)) {
+                //if outdoor is empty display just indoor
+                $_SESSION['interests'] = implode(' ', $indoor);
+            } else if (empty($indoor) && !empty($outdoor)) {
+                //if indoor is empty display just outdoor
+                $_SESSION['interests'] = implode(' ', $outdoor);
+            } else {
+                //if both are empty display default
+                $_SESSION['interests'] = "Interests was not specified yet";
+            }
             //Redirect to summary
             $f3->reroute('/summary');
         }
