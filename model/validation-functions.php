@@ -227,6 +227,12 @@ function validIndoor($indoor) {
     return $isValid;
 }
 
+/**
+ * Checks Premium account input is a valid value.
+ *
+ * @param String $membership to validate
+ * @return boolean
+ */
 function validMembership($membership) {
     global $f3;
     $isValid = true;
