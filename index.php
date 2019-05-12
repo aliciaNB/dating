@@ -21,7 +21,8 @@ $f3 = Base::instance();
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
-//define expected values for form arrays with multiple values
+//define expected values for form checks, radios, and drop downs
+$f3->set('memberships', array('Sign me up for a Premium Account!'));
 $f3->set('genders', array('Male', 'Female'));
 
 $f3->set('states', array('ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA', 'COLORADO', 'CONNECTICUT', 'DELAWARE',
@@ -42,7 +43,7 @@ $f3->route('GET /', function() {
 
 //Define route to first create profile form - personal information
 $f3->route('GET|POST /personalinformation', function($f3) {
-
+//TODO: validate, add to hive, and set session for premium checkbox
     //if form has been submitted, validate
     if (!empty($_POST)) {
         //get data from form
