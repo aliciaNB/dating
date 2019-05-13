@@ -1,7 +1,7 @@
 <?php
 //Name: Alicia Buehner
-//Date: 05.05.19
-//Description: This file contains the validation functions for the dating profile form
+//Date: 05.14.19
+//Description: This file contains the validation functions for the dating profile form.
 
 /**
  * Checks to see that personal information form
@@ -9,7 +9,8 @@
  *
  * @return boolean
  */
-function validForm1() {
+function validForm1()
+{
     global $f3;
     $isValid = true;
 
@@ -51,7 +52,8 @@ function validForm1() {
  *
  * @return boolean
  */
-function validForm2() {
+function validForm2()
+{
     global $f3;
     $isValid = true;
 
@@ -78,7 +80,8 @@ function validForm2() {
  *
  * @return boolean
  */
-function validForm3() {
+function validForm3()
+{
     global $f3;
     $isValid = true;
 
@@ -100,20 +103,22 @@ function validForm3() {
  * Checks to see that a string is all alphabetic
  * and contains a value.
  *
- *@param String name A string to validate
+ *@param String $name A string to validate
  * @return boolean
  */
-function validName($name) {
+function validName($name)
+{
     //return true if not empty and all alphabetic
     return !empty($name) && ctype_alpha($name);
 }
 
-/* Validate gender
+/* This function validates gender is a valid value.
  *
- * @param String gender
+ * @param String $gender A gender to validate
  * @return boolean
  */
-function validGender($gender){
+function validGender($gender)
+{
     global $f3;
 
     //gender is optional
@@ -125,31 +130,33 @@ function validGender($gender){
 }
 
 /**
- * Checks to age is numeric and in range of 18-118
+ * This function validates age is numeric and in range of 18-118
  * and contains a value.
  *
- * @param Number age An age to validate
+ * @param Number $age An age to validate
  * @return boolean
  */
-function validAge($age) {
+function validAge($age)
+{
     //return true if age is 18-118, a number, and not empty
     return $age >= 18 && $age <= 118 && is_numeric($age) && !empty($age);
 }
 
 /**
- * Checks to see that a phone number is valid.
+ * This function validates that a phone number is valid value.
  *
- * @param Number phoneNum A phone number to validate
+ * @param String $phoneNum A phone number to validate
  * @return boolean
  */
-function validPhone($phoneNum) {
+function validPhone($phoneNum)
+{
     $isValid = true;
 
     //remove spaces
     $numbers = preg_replace("/[^0-9]/", '', $phoneNum);
     $values = strlen($numbers);
 
-    if($values != 10) {
+    if ($values != 10) {
         $isValid = false;
     }
     //return true if valid number 0-9, not empty, is at least 10 digits
@@ -157,23 +164,26 @@ function validPhone($phoneNum) {
 }
 
 /**
- * Checks to see that an email address is valid.
+ * This function validates that email address is valid value.
  *
- * @param String email An email to validate
+ * @param String 4email An email to validate
  * @return boolean
  */
-function validEmail($email) {
+function validEmail($email)
+{
     //return true if valid email and not empty
     return filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($email);
 }
 
 
-/* Validate state
+/**
+ * This function validates if a state is a valid value.
  *
  * @param String state selected
  * @return boolean
  */
-function validState($state) {
+function validState($state)
+{
     global $f3;
 
     //state is optional
@@ -186,19 +196,20 @@ function validState($state) {
 
 
 /**
- * Checks each selected outdoor interest against a list
- * of valid options. Not required field.
+ * This function validates that each selected outdoor interest against
+ * a list of valid options is valid. Not required field.
  *
  * @param String outdoor Interests to validate
  * @return boolean
  */
-function validOutdoor($outdoor) {
+function validOutdoor($outdoor)
+{
     global $f3;
     $isValid = true;
     // if it's empty, don't check for in array
-    if(!empty($outdoor)) {
-        foreach($outdoor as $item) {
-            if(!in_array($item, $f3->get('outdoors'))) {
+    if (!empty($outdoor)) {
+        foreach ($outdoor as $item) {
+            if (!in_array($item, $f3->get('outdoors'))) {
                 $isValid = false;
             }
         }
@@ -207,19 +218,20 @@ function validOutdoor($outdoor) {
 }
 
 /**
- * Checks each selected indoor interest against a list
- * of valid options. Not required field.
+ * This function validates that each selected indoor interest against
+ * a list of valid options is valid. Not required field.
  *
  * @param String indoor Interests to validate
  * @return boolean
  */
-function validIndoor($indoor) {
+function validIndoor($indoor)
+{
     global $f3;
     $isValid = true;
     // if it's empty, don't check for in array
-    if(!empty($indoor)) {
-        foreach($indoor as $item) {
-            if(!in_array($item, $f3->get('indoors'))) {
+    if (!empty($indoor)) {
+        foreach ($indoor as $item) {
+            if (!in_array($item, $f3->get('indoors'))) {
                 $isValid = false;
             }
         }
@@ -228,17 +240,19 @@ function validIndoor($indoor) {
 }
 
 /**
- * Checks Premium account input is a valid value.
+ * This function validates that the Premium account input
+ * is a valid value.
  *
  * @param String $membership to validate
  * @return boolean
  */
-function validMembership($membership) {
+function validMembership($membership)
+{
     global $f3;
     $isValid = true;
     // if it's empty, don't check for in array
-    if(!empty($membership)){
-       if(!($membership == $f3->get('memberships'))) {
+    if (!empty($membership)) {
+       if (!($membership == $f3->get('memberships'))) {
            $isValid = false;
        }
     }

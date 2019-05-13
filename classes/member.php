@@ -1,7 +1,9 @@
 <?php
-
 /**
- * Class Member represents a...
+ * Class Member represents a standard Spark dating profile.
+ * Member represents a Spark dating profile with a first name,
+ * last name, age, gender, phone number, email, seeking gender,
+ * and biography.
  *
  * @author Alicia Buehner
  * @copyright 2017
@@ -20,11 +22,13 @@ class Member
 
     /**
      * Member constructor.
-     * @param $first
-     * @param $last
-     * @param $age
-     * @param $gender
-     * @param $phone
+     *
+     * @param String $first First name
+     * @param String $last Last name
+     * @param int $age Age
+     * @param String $gender Gender
+     * @param String $phone Phone number
+     * @return void
      */
     public function __construct($first, $last, $age, $gender, $phone)
     {
@@ -36,7 +40,8 @@ class Member
     }
 
     /**
-     * Gets member first name.
+     * Gets Member first name.
+     *
      * @return String
      */
     public function getFname()
@@ -45,7 +50,8 @@ class Member
     }
 
     /**
-     * Gets member last name.
+     * Gets Member last name.
+     *
      * @return String
      */
     public function getLname()
@@ -54,7 +60,8 @@ class Member
     }
 
     /**
-     * Gets member age.
+     * Gets Member age.
+     *
      * @return int
      */
     public function getAge()
@@ -63,7 +70,8 @@ class Member
     }
 
     /**
-     * Gets member gender.
+     * Gets Member gender.
+     *
      * @return String
      */
     public function getGender()
@@ -72,7 +80,8 @@ class Member
     }
 
     /**
-     * Gets member phone number.
+     * Gets Member phone number.
+     *
      * @return String
      */
     public function getPhone()
@@ -81,7 +90,8 @@ class Member
     }
 
     /**
-     * Gets member email.
+     * Gets Member email.
+     *
      * @return String
      */
     public function getEmail()
@@ -90,7 +100,8 @@ class Member
     }
 
     /**
-     * Get member state.
+     * Get Member state.
+     *
      * @return String
      */
     public function getState()
@@ -99,7 +110,8 @@ class Member
     }
 
     /**
-     * Get member seeking gender.
+     * Get Member seeking gender.
+     *
      * @return String
      */
     public function getSeeking()
@@ -108,7 +120,8 @@ class Member
     }
 
     /**
-     * Gets member biography.
+     * Gets Member biography.
+     *
      * @return String
      */
     public function getBio()
@@ -117,8 +130,9 @@ class Member
     }
 
     /**
-     * Sets member first name.
-     * @param $first
+     * Sets Member first name.
+     *
+     * @param String $first First name
      * @return void
      */
     public function setFname($first)
@@ -127,8 +141,9 @@ class Member
     }
 
     /**
-     * Sets member last name.
-     * @param $last
+     * Sets Member last name.
+     *
+     * @param String $last Last name
      * @return void
      */
     public function setLname($last)
@@ -137,8 +152,9 @@ class Member
     }
 
     /**
-     * Sets member age.
-     * @param $age
+     * Sets Member age.
+     *
+     * @param int $age Age
      * @return void
      */
     public function setAge($age)
@@ -147,8 +163,9 @@ class Member
     }
 
     /**
-     * Set member gender
-     * @param $gender
+     * Sets Member gender.
+     *
+     * @param String $gender Gender
      * @return void
      */
     public function setGender($gender)
@@ -157,8 +174,9 @@ class Member
     }
 
     /**
-     * Sets member phone number.
-     * @param $phone
+     * Sets Member phone number.
+     *
+     * @param String $phone Phone number
      * @return void
      */
     public function setPhone($phone)
@@ -167,8 +185,9 @@ class Member
     }
 
     /**
-     * Sets member email.
-     * @param $email
+     * Sets Member email.
+     *
+     * @param String $email Email
      * @return void
      */
     public function setEmail($email)
@@ -177,8 +196,9 @@ class Member
     }
 
     /**
-     * Sets member state.
-     * @param $state
+     * Sets Member state.
+     *
+     * @param String $state State
      * @return void
      */
     public function setState($state)
@@ -187,8 +207,9 @@ class Member
     }
 
     /**
-     * Sets member gender seeking.
-     * @param $seeking
+     * Sets Member gender seeking.
+     *
+     * @param String $seeking Seeking gender
      * @return void
      */
     public function setSeeking($seeking)
@@ -198,7 +219,8 @@ class Member
 
     /**
      * Sets member biography.
-     * @param $bio
+     *
+     * @param String $bio Biography
      * @return void
      */
     public function setBio($bio)
