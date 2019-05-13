@@ -4,9 +4,6 @@
 //Description: This file contains the index page for Dating I, II & III, instantiates the Fat-Free Framework
 //and defines the project routes through the create a profile form.
 
-//Start session
-session_start();
-
 //Turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -14,6 +11,9 @@ error_reporting(E_ALL);
 //Require vendor/autoload file
 require_once('vendor/autoload.php');
 require_once('model/validation-functions.php');
+
+//Start session
+session_start();
 
 //Create an instance of the Base class (instantiate Fat-Free)
 $f3 = Base::instance();
@@ -65,17 +65,18 @@ $f3->route('GET|POST /personalinformation', function($f3) {
         //if valid add to session
         if (validForm1()) {
             //gather SESSION info
-            $_SESSION['first'] = $first;
-            $_SESSION['last'] = $last;
-            $_SESSION['age'] = $age;
-
-            //gender is optional check if empty store default value
-            if (empty($gender)) {
-                $_SESSION['gender'] = "Gender was not specified yet";
-            } else {
-                $_SESSION['gender'] = $gender;
+            //instantiate PremiumMember if checked
+            if (!empty($membership)) {
+                //gender is optional check if empty store default value
+                if (empty($gender)) {
+                    $gender = "Gender was not specified yet";
+                }
+                $newMember = new PremiumMember($first, $last, $age, $gender, $phone);
+                $_SESSION['member'] = $newMember;
+            } else { //otherwise, instantiate Member
+                $newMember = new Member($first, $last, $age, $gender, $phone);
+                $_SESSION['member'] = $newMember;
             }
-            $_SESSION['phone'] = $phone;
 
             //Redirect to profile form
             $f3->reroute('/profile');
@@ -106,31 +107,35 @@ $f3->route('GET|POST /profile', function($f3) {
         //if valid add to session
         if (validForm2()) {
             //gather SESSION info
-            $_SESSION['email'] = $email;
+            $_SESSION['member']->setEmail($email);
 
             //state is optional check if empty store default value
             if (empty($state)) {
-                $_SESSION['state'] = "State was not specified yet";
-            } else {
-                $_SESSION['state'] = $state;
+                $state = "State was not specified yet";
             }
 
             //gender is optional check if empty store default value
             if (empty($seeking)) {
-                $_SESSION['seeking'] = "Gender was not specified yet";
-            } else {
-                $_SESSION['seeking'] = $seeking;
+                $seeking = "Gender was not specified yet";
             }
 
             //bio is optional check if empty store default value
             if (empty($bio)) {
-                $_SESSION['bio'] = "Biography was not specified yet";
-            } else {
-                $_SESSION['bio'] = $bio;
+                $bio = "Biography was not specified yet";
             }
 
-            //Redirect to profile form
-            $f3->reroute('/interests');
+            $_SESSION['member']->setState($state);
+            $_SESSION['member']->setSeeking($seeking);
+            $_SESSION['member']->setBio($bio);
+
+            //redirect user based on member type
+            if ($_SESSION['member'] instanceof PremiumMember) {
+                //Redirect to interests form
+                $f3->reroute('/interests');
+            } else {
+                //Redirect to summary
+                $f3->reroute('/summary');
+            }
         }
     }
 
@@ -159,17 +164,22 @@ $f3->route('POST /interests', function($f3) {
         //gather SESSION info && check for empty values
         if (!empty($indoor) && !empty($outdoor)) {
             //if selected in both display both
-            $_SESSION['interests'] = implode(' ', $indoor) . ' ' . implode(' ', $outdoor);
+            $_SESSION['member']->setInDoorInterests($indoor);
+            $_SESSION['member']->setOutDoorInterests($outdoor);
         } else if (empty($outdoor) && !empty($indoor)) {
             //if outdoor is empty display just indoor
-            $_SESSION['interests'] = implode(' ', $indoor);
+            $_SESSION['member']->setInDoorInterests($indoor);
         } else if (empty($indoor) && !empty($outdoor)) {
             //if indoor is empty display just outdoor
-            $_SESSION['interests'] = implode(' ', $outdoor);
+            $_SESSION['member']->setOutDoorInterests($outdoor);
         } else {
             //if both are empty display default
-            $_SESSION['interests'] = "Interests was not specified yet";
+            $indoor = array("None selected yet");
+            $outdoor = array("None selected yet");
+            $_SESSION['member']->setInDoorInterests($indoor);
+            $_SESSION['member']->setOutDoorInterests($outdoor);
         }
+
         //Redirect to summary
         $f3->reroute('/summary');
     }
