@@ -103,7 +103,7 @@ function validForm3()
  * Checks to see that a string is all alphabetic
  * and contains a value.
  *
- *@param String $name A string to validate
+ * @param String $name A string to validate
  * @return boolean
  */
 function validName($name)
@@ -208,7 +208,7 @@ function validOutdoor($outdoor)
     $isValid = true;
     // if it's empty, don't check for in array
     if (!empty($outdoor)) {
-        foreach ($outdoor as $item) {
+        foreach($outdoor as $item) {
             if (!in_array($item, $f3->get('outdoors'))) {
                 $isValid = false;
             }
@@ -230,7 +230,7 @@ function validIndoor($indoor)
     $isValid = true;
     // if it's empty, don't check for in array
     if (!empty($indoor)) {
-        foreach ($indoor as $item) {
+        foreach($indoor as $item) {
             if (!in_array($item, $f3->get('indoors'))) {
                 $isValid = false;
             }
