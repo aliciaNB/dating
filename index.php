@@ -145,8 +145,14 @@ $f3->route('GET|POST /profile', function($f3) {
 
 //Define route to third create profile form - interest if empty
 $f3->route('GET /interests', function($f3) {
-    $view = new Template();
-    echo $view->render('views/interest_form.html');
+
+    if ($_SESSION['member'] instanceof PremiumMember) {
+        $view = new Template();
+        echo $view->render('views/interest_form.html');
+    } else {
+        //Redirect to summary
+        $f3->reroute('/summary');
+    }
 });
 
 //Define route to third create profile form - interest
@@ -168,9 +174,13 @@ $f3->route('POST /interests', function($f3) {
             $_SESSION['member']->setOutDoorInterests($outdoor);
         } else if (empty($outdoor) && !empty($indoor)) {
             //if outdoor is empty display just indoor
+            $outdoor = array("None selected yet");
             $_SESSION['member']->setInDoorInterests($indoor);
+            $_SESSION['member']->setOutDoorInterests($outdoor);
         } else if (empty($indoor) && !empty($outdoor)) {
             //if indoor is empty display just outdoor
+            $indoor = array("None selected yet");
+            $_SESSION['member']->setInDoorInterests($indoor);
             $_SESSION['member']->setOutDoorInterests($outdoor);
         } else {
             //if both are empty display default
