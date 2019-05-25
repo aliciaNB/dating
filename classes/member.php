@@ -1,4 +1,8 @@
 <?php
+//Name: Alicia Buehner
+//Date: 05.27.19
+//Description: This file contains Member object class for the Dating Assignment.
+
 /**
  * Class Member represents a standard Spark dating profile.
  * Member represents a Spark dating profile with a first name,
@@ -6,7 +10,7 @@
  * and biography.
  *
  * @author Alicia Buehner
- * @copyright 2017
+ * @copyright 2019
  */
 class Member
 {

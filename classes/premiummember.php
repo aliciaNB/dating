@@ -1,4 +1,8 @@
 <?php
+//Name: Alicia Buehner
+//Date: 05.27.19
+//Description: This file contains PremiumMember object class for the Dating Assignment.
+
 /**
  * Class PremiumMember represents a premium Spark dating profile.
  * The PremiumMember represents a Spark dating profile with a first name,
@@ -6,7 +10,7 @@
  * and indoor and outdoor interests.
  *
  * @author Alicia Buehner
- * @copyright 2017
+ * @copyright 2019
  */
 class PremiumMember extends Member
 {
