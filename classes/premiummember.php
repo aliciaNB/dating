@@ -25,6 +25,7 @@ class PremiumMember extends Member
      * @param int $age Member age
      * @param String $gender Member gender
      * @param String $phone Member phone number
+     * @return void
      */
     public function __construct($first, $last, $age, $gender, $phone)
     {
