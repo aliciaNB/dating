@@ -10,10 +10,11 @@
  *       fname VARCHAR(50) NOT NULL,
  *       lname VARCHAR(50) NOT NULL,
  *       age INT NOT NULL,
- *       gender CHAR(1),
+ *       gender VARCHAR(13),
  *       phone VARCHAR(14) NOT NULL,
  *       email VARCHAR(255) NOT NULL,
- *       seeking CHAR(1),
+ *       state VARCHAR(20),
+ *       seeking VARCHAR(13),
  *       bio TEXT,
  *       premium TINYINT(1) DEFAULT 0,
  *       image TEXT,
@@ -93,15 +94,38 @@ class Database
         }
     }
 
-    function insertMember()
+    function insertMember($member)
     {
+        //check Member type
+        if ($member instanceof PremiumMember) {
+            $premium = 1;
+        } else {
+            $premium = 0;
+        }
+
         //Define the query
+        $sql = "INSERT INTO member(fname, lname, age, gender, phone, email, state, seeking, bio, premium) 
+                VALUES (:fname, :lname, :age, :gender, :phone, :email, :state, :seeking, :bio, :premium)";
 
         //Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
 
         //Bind the parameters
+        $statement->bindParam(':fname', $member->getFname(), PDO::PARAM_STR);
+        $statement->bindParam(':lname', $member->getLname(), PDO::PARAM_STR);
+        $statement->bindParam(':age', $member->getAge(), PDO::PARAM_INT);
+        $statement->bindParam(':gender', $member->getGender(), PDO::PARAM_STR);
+        $statement->bindParam(':phone', $member->getPhone(), PDO::PARAM_STR);
+        $statement->bindParam(':email', $member->getEmail(), PDO::PARAM_STR);
+        $statement->bindParam(':state', $member->getState(), PDO::PARAM_STR);
+        $statement->bindParam(':seeking', $member->getSeeking(), PDO::PARAM_STR);
+        $statement->bindParam(':bio', $member->getBio(), PDO::PARAM_STR);
+        $statement->bindParam(':premium', $premium, PDO::PARAM_INT);
 
         //Execute
+        $statement->execute();
+
+        //TODO: INSERT statement for junction table PremiumMember fields
 
         //Process result if there is one
         return;
