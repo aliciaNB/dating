@@ -2,6 +2,8 @@
 //Name: Alicia Buehner
 //Date: 05.27.19
 //Description: This file contains PremiumMember object class for the Dating Assignment.
+//             Includes field and getter/setter for profile image functionality that is
+//             not implemented yet.
 
 /**
  * Class PremiumMember represents a premium Spark dating profile.
@@ -16,6 +18,7 @@ class PremiumMember extends Member
 {
     private $_inDoorInterests;
     private $_outDoorInterests;
+    private $_profileImage;
 
     /**
      * PremiumMember constructor.
@@ -53,6 +56,16 @@ class PremiumMember extends Member
     }
 
     /**
+     * Gets PremiumMember profile image path.
+     *
+     * @return String Profile image path
+     */
+    public function getProfileImage()
+    {
+        return $this->_profileImage;
+    }
+
+    /**
      * Sets PremiumMember indoor interests.
      *
      * @param array $inDoorInterests Selected interests
@@ -72,5 +85,16 @@ class PremiumMember extends Member
     public function setOutDoorInterests($outDoorInterests)
     {
         $this->_outDoorInterests = $outDoorInterests;
+    }
+
+    /**
+     * Sets PremiumMember profile image path.
+     *
+     * @param $profileImage Member profile image path
+     * @return void
+     */
+    public function setProfileImage($profileImage)
+    {
+        $this->_profileImage = $profileImage;
     }
 }
