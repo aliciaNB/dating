@@ -6,8 +6,8 @@
 /* SQL table creation statements:
  *
  *   CREATE TABLE member (
- *      member_id INT NOT NULL AUTO_INCREMENT,
- *         fname VARCHAR(50) NOT NULL,
+ *       member_id INT NOT NULL AUTO_INCREMENT,
+ *       fname VARCHAR(50) NOT NULL,
  *       lname VARCHAR(50) NOT NULL,
  *       age INT NOT NULL,
  *       gender CHAR(1),
@@ -70,23 +70,68 @@ class Database
     //field
     private $_dbh;
 
+    /**
+     * Database constructor.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->connect();
+    }
+
+
     function connect()
     {
-        return;
+        try {
+            //Instantiate a db object
+            $this->_dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
+            return $this->_dbh;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
     }
 
     function insertMember()
     {
+        //Define the query
+
+        //Prepare the statement
+
+        //Bind the parameters
+
+        //Execute
+
+        //Process result if there is one
         return;
     }
 
     function getMember($member_id)
     {
+        //Define the query
+
+        //Prepare the statement
+
+        //Bind the parameters
+
+        //Execute
+
+        //Process result if there is one
         return;
     }
 
     function getInterests($member_id)
     {
+        //Define the query
+
+        //Prepare the statement
+
+        //Bind the parameters
+
+        //Execute
+
+        //Process result if there is one
         return;
     }
 }
