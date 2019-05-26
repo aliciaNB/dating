@@ -3,19 +3,19 @@
 //Date: 05.27.19
 //Description: This file contains the Database object class for the Dating Assignment.
 
-/* SQL table creation statements:
+/* SQL table creation statements, *Optional fields are NOT NULL because - default values stored:
  *
  *   CREATE TABLE member (
  *       member_id INT NOT NULL AUTO_INCREMENT,
  *       fname VARCHAR(50) NOT NULL,
  *       lname VARCHAR(50) NOT NULL,
  *       age INT NOT NULL,
- *       gender VARCHAR(13),
+ *       gender VARCHAR(13) NOT NULL,
  *       phone VARCHAR(14) NOT NULL,
  *       email VARCHAR(255) NOT NULL,
- *       state VARCHAR(20),
- *       seeking VARCHAR(13),
- *       bio TEXT,
+ *       state VARCHAR(20) NOT NULL,
+ *       seeking VARCHAR(13) NOT NULL,
+ *       bio TEXT NOT NULL,
  *       premium TINYINT(1) DEFAULT 0,
  *       image TEXT,
  *       PRIMARY KEY(member_id)
@@ -90,7 +90,7 @@ class Database
             return $this->_dbh;
 
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            return $e->getMessage();
         }
     }
 
@@ -125,7 +125,10 @@ class Database
         //Execute
         $statement->execute();
 
-        //TODO: INSERT statement for junction table PremiumMember fields
+        //TODO: INSERT statement for junction table, PremiumMember fields - you will write one row
+        //      to the member_interests table for each interest that the member selected. (Note: this
+        //      will be a lot easier if you populate your interests lists in the web app using the ids
+        //      that are in the database as the value of each checkbox.)
 
         //Process result if there is one
         return;
