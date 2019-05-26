@@ -1,7 +1,7 @@
 <?php
 //Name: Alicia Buehner
-//Date: 05.14.19
-//Description: This file contains the index page for Dating I, II & III, instantiates the Fat-Free Framework
+//Date: 05.27.19
+//Description: This file contains the index page for Dating I, II & III, IV instantiates the Fat-Free Framework
 //and defines the project routes through the create a profile form.
 
 //Turn on error reporting
@@ -21,7 +21,10 @@ $f3 = Base::instance();
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
-//define expected values for form checks, radios, and drop downs
+//Create Database object
+$db = new Database();
+
+//Define expected values for form checks, radios, and drop downs
 $f3->set('memberships', 'Sign me up for a Premium Account!');
 $f3->set('genders', array('Male', 'Female'));
 
@@ -69,15 +72,13 @@ $f3->route('GET|POST /personalinformation', function($f3) {
             if (!empty($membership)) {
                 //gender is optional check if empty store default value
                 if (empty($gender)) {
-                    $gender = "Gender was not specified yet";
+                    $gender = "Not specified";
                 }
                 $newMember = new PremiumMember($first, $last, $age, $gender, $phone);
-                $_SESSION['member'] = $newMember;
             } else { //otherwise, instantiate Member
                 $newMember = new Member($first, $last, $age, $gender, $phone);
-                $_SESSION['member'] = $newMember;
             }
-
+            $_SESSION['member'] = $newMember;
             //Redirect to profile form
             $f3->reroute('/profile');
         }
@@ -111,17 +112,17 @@ $f3->route('GET|POST /profile', function($f3) {
 
             //state is optional check if empty store default value
             if (empty($state)) {
-                $state = "State was not specified yet";
+                $state = "Not specified";
             }
 
             //gender is optional check if empty store default value
             if (empty($seeking)) {
-                $seeking = "Gender was not specified yet";
+                $seeking = "Not specified";
             }
 
             //bio is optional check if empty store default value
             if (empty($bio)) {
-                $bio = "Biography was not specified yet";
+                $bio = "Not specified";
             }
 
             $_SESSION['member']->setState($state);
@@ -174,18 +175,18 @@ $f3->route('POST /interests', function($f3) {
             $_SESSION['member']->setOutDoorInterests($outdoor);
         } else if (empty($outdoor) && !empty($indoor)) {
             //if outdoor is empty display just indoor
-            $outdoor = array("None selected yet");
+            $outdoor = array("None selected");
             $_SESSION['member']->setInDoorInterests($indoor);
             $_SESSION['member']->setOutDoorInterests($outdoor);
         } else if (empty($indoor) && !empty($outdoor)) {
             //if indoor is empty display just outdoor
-            $indoor = array("None selected yet");
+            $indoor = array("None selected");
             $_SESSION['member']->setInDoorInterests($indoor);
             $_SESSION['member']->setOutDoorInterests($outdoor);
         } else {
             //if both are empty display default
-            $indoor = array("None selected yet");
-            $outdoor = array("None selected yet");
+            $indoor = array("None selected");
+            $outdoor = array("None selected");
             $_SESSION['member']->setInDoorInterests($indoor);
             $_SESSION['member']->setOutDoorInterests($outdoor);
         }
@@ -200,6 +201,12 @@ $f3->route('POST /interests', function($f3) {
 
 //Define route to third create profile form - interest
 $f3->route('GET|POST /summary', function() {
+
+    //make db global access
+    global $db;
+
+    $db->insertMember($_SESSION['member']);
+
     $view = new Template();
     echo $view->render('views/form_summary.html');
 });
