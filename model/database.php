@@ -134,6 +134,20 @@ class Database
         return;
     }
 
+    function getMembers()
+    {
+        //Define the query
+
+        //Prepare the statement
+
+        //Bind the parameters
+
+        //Execute
+
+        //Process result if there is one
+        return;
+    }
+
     function getMember($member_id)
     {
         //Define the query
@@ -160,5 +174,27 @@ class Database
 
         //Process result if there is one
         return;
+    }
+
+    function getInterest($type)
+    {
+        //Define the query - get array of id values for each type of interest
+        $sql = "SELECT interest_id, interest
+                FROM interest
+                WHERE type = :type";
+
+        //Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //Bind the parameters
+        $statement->bindParam(':type', $type, PDO::PARAM_STR);
+
+        //Execute
+        $statement->execute();
+
+        //Process result if there is one
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
     }
 }

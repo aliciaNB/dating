@@ -40,14 +40,14 @@ Description: This file contains the html structures for the create profile form 
                                     <small id="indoorHelp" class="text-danger">{{ @errors['indoor'] }}</small>
                                 </check>
                                 <div class="row ml-1">
-                                    <repeat group="{{ @indoors }}" value="{{ @indoorOption }}">
+                                    <repeat group="{{ @indoors }}" value="{{ @indoorValue }}">
                                         <div class="form-check col-sm-3">
-                                            <input class="form-check-input" name="indoor[]" type="checkbox" id="{{ @indoorOption }}"
-                                                   value="{{ @indoorOption }}"
-                                            <check if="{{ !(empty(@indoor)) && in_array(@indoorOption, @indoor) }}">
+                                            <input class="form-check-input" name="indoor[]" type="checkbox" id="{{ @indoorValue['interest'] }}"
+                                                   value="{{ @indoorValue['interest_id'] }}"
+                                            <check if="{{ !(empty(@indoor)) && in_array(@indoorValue['interest_id'], @indoor) }}">
                                                 checked
                                             </check>>
-                                            <label class="form-check-label" for="{{ @indoorOption }}">{{ @indoorOption }}</label>
+                                            <label class="form-check-label" for="{{ @indoorValue['interest'] }}">{{ @indoorValue['interest'] }}</label>
                                         </div>
                                     </repeat>
                                 </div>
@@ -58,14 +58,14 @@ Description: This file contains the html structures for the create profile form 
                                     <small id="outdoorHelp" class="text-danger">{{ @errors['outdoor'] }}</small>
                                 </check>
                                 <div class="row ml-1">
-                                    <repeat group="{{ @outdoors }}" value="{{ @outdoorOption }}">
+                                    <repeat group="{{ @outdoors }}" value="{{ @outdoorValue }}">
                                         <div class="form-check col-sm-3">
-                                            <input class="form-check-input" name="outdoor[]" type="checkbox" id="{{ @outdoorOption }}"
-                                                   value="{{ @outdoorOption }}"
-                                            <check if="{{ !(empty(@outdoor)) && in_array(@outdoorOption, @outdoor) }}">
+                                            <input class="form-check-input" name="outdoor[]" type="checkbox" id="{{ @outdoorValue['interest'] }}"
+                                                   value="{{ @outdoorValue['interest_id'] }}"
+                                            <check if="{{ !(empty(@outdoor)) && in_array(@outdoorValue['interest_id'], @outdoor) }}">
                                                 checked
                                             </check>>
-                                            <label class="form-check-label" for="{{ @outdoorOption }}">{{ @outdoorOption }}</label>
+                                            <label class="form-check-label" for="{{ @outdoorValue['interest'] }}">{{ @outdoorValue['interest'] }}</label>
                                         </div>
                                     </repeat>
                                 </div>

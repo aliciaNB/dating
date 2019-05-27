@@ -35,8 +35,12 @@ $f3->set('states', array('ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA
     'OHIO', 'OKLAHOMA','OREGON', 'PENNSYLVANIA', 'RHODE ISLAND', 'SOUTH CAROLINA', 'SOUTH DAKOTA', 'TENNESSEE',
     'TEXAS', 'UTAH', 'VERMONT', 'VIRGINIA', 'WASHINGTON', 'WEST VIRGINIA', 'WISCONSIN', 'WYOMING'));
 
-$f3->set('indoors', array('tv', 'puzzles', 'movies', 'reading', 'cooking', 'playing cards', 'board games', 'video games'));
-$f3->set('outdoors', array('hiking', 'walking', 'biking', 'climbing', 'swimming', 'collecting'));
+//get the interest and id for each type of interest to display from the db
+$indoors = $db->getInterest('indoor');
+$outdoors =$db->getInterest('outdoor');
+
+$f3->set('indoors', $indoors);
+$f3->set('outdoors', $outdoors);
 
 //Define a default route
 $f3->route('GET /', function() {
@@ -148,6 +152,11 @@ $f3->route('GET|POST /profile', function($f3) {
 $f3->route('GET /interests', function($f3) {
 
     if ($_SESSION['member'] instanceof PremiumMember) {
+        //make db global access
+        global $db;
+
+
+
         $view = new Template();
         echo $view->render('views/interest_form.html');
     } else {

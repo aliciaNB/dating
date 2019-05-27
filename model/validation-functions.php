@@ -209,7 +209,7 @@ function validOutdoor($outdoor)
     // if it's empty, don't check for in array
     if (!empty($outdoor)) {
         foreach($outdoor as $item) {
-            if (!in_array($item, $f3->get('outdoors'))) {
+            if (!in_array($item, array_column($f3->get('outdoors'), 'interest_id'))) {
                 $isValid = false;
             }
         }
@@ -230,8 +230,9 @@ function validIndoor($indoor)
     $isValid = true;
     // if it's empty, don't check for in array
     if (!empty($indoor)) {
+
         foreach($indoor as $item) {
-            if (!in_array($item, $f3->get('indoors'))) {
+            if (!in_array($item, array_column($f3->get('indoors'), 'interest_id'))) {
                 $isValid = false;
             }
         }
