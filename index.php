@@ -152,11 +152,6 @@ $f3->route('GET|POST /profile', function($f3) {
 $f3->route('GET /interests', function($f3) {
 
     if ($_SESSION['member'] instanceof PremiumMember) {
-        //make db global access
-        global $db;
-
-
-
         $view = new Template();
         echo $view->render('views/interest_form.html');
     } else {
@@ -209,15 +204,47 @@ $f3->route('POST /interests', function($f3) {
 });
 
 //Define route to third create profile form - interest
-$f3->route('GET|POST /summary', function() {
+$f3->route('GET|POST /summary', function($f3) {
 
     //make db global access
     global $db;
 
-    $db->insertMember($_SESSION['member']);
+    //add member to the db and store the id
+    $memberId = $db->insertMember($_SESSION['member']);
+
+    //retrieve interests for current member
+    $selectedInterest = $db->getInterests($memberId);
+    if (empty($selectedInterest)) {
+        $selectedInterest = 'None selected';
+    }
+    $f3->set('selectedInterest', $selectedInterest);
 
     $view = new Template();
     echo $view->render('views/form_summary.html');
+});
+
+//Define route to the admin page that displays all the members
+$f3->route('GET /admin', function ($f3) {
+
+    //make db global
+    global $db;
+
+    //get the members
+    $members = $db->getMembers();
+    $f3->set('members', $members);
+
+    //add interests if member is Premium member
+    foreach ($members as $key => $row) {
+        if($row['premium']== 1) {
+            $interest = $db->getInterests($row['member_id']);
+            $members[$key]['interest'] = $interest;
+        }
+    }
+    //store new members hive value
+    $f3->set('members', $members);
+
+    $view = new Template();
+    echo $view->render('views/admin_page.html');
 });
 
 //Run Fat-free

@@ -71,25 +71,7 @@ Description: This file contains the html structures for the create profile summa
                         <check if="$_SESSION['member'] instanceof PremiumMember">
                             <true>
                                 <li class="list-group-item">Interests:
-                                    <check if="$_SESSION['member']->getInDoorInterests()[0]!='None selected' &&
-                                               $_SESSION['member']->getOutDoorInterests()[0]!='None selected'">
-                                        <true>
-                                            {{ implode(" ", $_SESSION['member']->getInDoorInterests()) }}
-                                            {{ implode(" ", $_SESSION['member']->getOutDoorInterests()) }}
-                                        </true>
-                                    </check>
-                                    <check if="$_SESSION['member']->getInDoorInterests()[0]!='None selected' &&
-                                               $_SESSION['member']->getOutDoorInterests()[0]=='None selected'">
-                                        <true>{{ implode(" ", $_SESSION['member']->getInDoorInterests()) }}</true>
-                                    </check>
-                                    <check if="$_SESSION['member']->getInDoorInterests()[0]=='None selected' &&
-                                                       $_SESSION['member']->getOutDoorInterests()[0]!='None selected'">
-                                        <true>{{ implode(" ", $_SESSION['member']->getOutDoorInterests()) }}</true>
-                                    </check>
-                                    <check if="$_SESSION['member']->getInDoorInterests()[0]=='None selected' &&
-                                               $_SESSION['member']->getOutDoorInterests()[0]=='None selected'">
-                                        <true>{{ implode(" ", $_SESSION['member']->getInDoorInterests()) }}</true>
-                                    </check>
+                                    {{ @selectedInterest }}
                                 </li>
                             </true>
                         </check>
